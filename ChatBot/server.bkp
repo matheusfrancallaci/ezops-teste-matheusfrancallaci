@@ -1,0 +1,106 @@
+/*
+var express = require('express');
+var app = express();
+
+
+//abrindo a porta para o servidor
+var server = app.listen(3000, () => {
+    console.log('server is running on port', server.address().port);
+});
+app.use(express.static(__dirname)); //Usando o JS do lado do cliente
+
+
+//var dbUrl = 'mongodb://root:mestre@chatbot.a3su7.mongodb.net/chatbot'
+var mongoose = require('mongoose');
+var dbUrl = 'mongodb+srv://root:mestre@chatbot.a3su7.mongodb.net/chatbot?retryWrites=true&w=majority'//conectando a URL do mondb- provavelmente ele procura uma porta que esta disponivel.
+
+/*
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const dbUrl = "mongodb+srv://root:mestre@chatbot.a3su7.mongodb.net/chatbot?retryWrites=true&w=majority";
+const client = new MongoClient(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+    const collection = client.db("chatbot").collection("devices");
+    // perform actions on the collection object
+    client.close();
+});
+*/
+/*
+
+mongoose.connect(dbUrl, (err) => {
+    console.log('mongodb connected', err);  //verificando conexão
+})
+var Message = mongoose.model('Message', { name: String, message: String })
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.get('/messages', (req, res) => {        //Get-recebe mensagens do usuario.
+    Message.find({}, (err, messages) => {
+        res.send(messages);
+    })
+
+})
+app.post('/messages', (req, res) => {       //Post-Envia mensagens do usuario ao banco
+    var message = new Message(req.body);
+    message.save((err) => {
+        if (err)
+            sendStatus(500);
+        io.emit('message', req.body);
+        res.sendStatus(200);
+    })
+})
+var http = require('http').Server(app); //tornando a conexão reponsiva com base nos dados recebidos.
+var io = require('socket.io')(http);
+io.on('connection', () => {
+    console.log('um usuário está conectado')
+})
+*/
+
+var express = require('express');
+var bodyParser = require('body-parser')
+var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+var mongoose = require('mongoose');
+app.use(express.static(__dirname));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+var Message = mongoose.model('Message', {
+    name: String,
+    message: String
+})
+//var dbUrl = 'mongodb://username:password@ds257981.mlab.com:57981/simple-chat'
+//var dbUrl = 'mongodb+srv://root:mestre@chatbot.a3su7.mongodb.net/chatbot?authSource=admin&replicaSet=atlas-20mg2u-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
+var dbUrl = 'mongodb+srv://root:mestre@chatbot.a3su7.mongodb.net/chatbot?retryWrites=true&w=majority'//conectando a URL do mondb- provavelmente ele procura uma porta que esta disponivel.
+
+
+
+app.get('/messages', (req, res) => {
+    Message.find({}, (err, messages) => {
+        res.send(messages);
+    })
+})
+/*app.get('/messages', (req, res) => {
+    Message.find({}, (err, messages) => {
+        res.send(messages);
+    })
+})*/
+app.post('/messages', (req, res) => {
+    var message = new Message(req.body);
+    message.save((err) => {
+        if (err)
+            sendStatus(500);
+        io.emit('message', req.body);
+        res.sendStatus(200);
+    })
+})
+io.on('connection', () => {
+    console.log('a user is connected')
+})
+mongoose.connect(dbUrl, (err) => {
+    console.log('mongodb connected', err);
+})
+var server = http.listen(3001, () => {
+    console.log('server is running on port', server.address().port);
+});
