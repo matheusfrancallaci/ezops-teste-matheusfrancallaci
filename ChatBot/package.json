@@ -1,0 +1,29 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "projeto-chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci.git"
+  },
+  "keywords": [
+    "chatbot"
+  ],
+  "author": "matheusfrancallaci",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci/issues"
+  },
+  "homepage": "https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "http": "^0.0.1-security",
+    "mongoose": "^6.2.6",
+    "socket.io": "^4.4.1"
+  }
+}
