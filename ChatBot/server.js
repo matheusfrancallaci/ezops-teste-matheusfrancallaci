@@ -38,13 +38,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.get('/messages', (req, res) => {
     Message.find({}, (err, messages) => {
         res.send(messages);
-    }).sort( { date : -1 } )     //forçando o banco a trazer o ultimo valor inserido.
+    }).sort( { date : 1 } )     //forçando o banco a trazer o ultimo valor inserido.
 })
 app.get('/messages/:user', (req, res) => {  //GET- Vai buscar a mensagem no banco usando o "name" como base.
     var user = req.params.user
     Message.find({name: user},(err, messages)=> {          
       res.send(messages);  
-    }).sort( { date : 1 } )
+    }).sort( { date : -1 } )
   })
 
 
