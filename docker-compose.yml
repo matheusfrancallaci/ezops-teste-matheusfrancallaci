@@ -2,19 +2,11 @@ version: '3'
 
 services:
     app:
-        image: node:16.14.0
-        volumes:
-            - ./ChatBot:/chatbot
+        build: .
+        command: npm start
         ports:
-            - 3002:3002
-        working_dir: '/app'
-        command: bash -c "
-            npm install -s express && 
-            npm install -g nodemon && 
-            npm install -s mongoose && 
-            npm install -s body-parser && 
-            npm install -s socket.io && 
-            npm install -s http && 
-            npm install -s babel-polyfill && 
-            npm install &&
-            node /chatbot/server.js"
+        - "3002:3002"
+        volumes:
+        - .:/usr/app
+
+    

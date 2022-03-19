@@ -1,0 +1,29 @@
+{
+  "name": "ezops-teste-matheusfrancallaci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ChatBot && node --inspect=0.0.0.0 server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci.git"
+  },
+  "keywords": [],
+  "author": "matheusfrancallaci",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci/issues"
+  },
+  "homepage": "https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "http": "^0.0.1-security",
+    "mongoose": "^6.2.7",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.1"
+  }
+}
