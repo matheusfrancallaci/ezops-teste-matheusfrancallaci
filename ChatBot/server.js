@@ -5,8 +5,9 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
-
-const mongourl = "mongodb+srv://root:mestre@chatbot.a3su7.mongodb.net/chatbot?retryWrites=true&w=majority";
+const { MongoClient, ServerApiVersion } = require('mongodb');
+//const mongourl = "mongodb+srv://root:mestre@chatbot.a3su7.mongodb.net/chatbot?retryWrites=true&w=majority";
+const mongourl = "mongodb+srv://AKIAWB6PQW4OTPYP357J:Pn9iq3+GUlWKnLl8ZQSBNEMvzi6bU3VezjrAmvpq@chatbot.a3su7.mongodb.net/chatbot?authSource=%24external&authMechanism=MONGODB-AWS";
 
 const schema = mongoose.Schema({ // Construi a estrura do banco usando
     name : {
