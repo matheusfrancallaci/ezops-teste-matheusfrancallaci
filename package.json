@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd ChatBot && nodemon server.js"
+    "start": "cd ChatBot && node --inspect=0.0.0.0 server.js"
   },
   "repository": {
     "type": "git",
