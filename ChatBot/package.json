@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/matheusfrancallaci/ezops-teste-matheusfrancallaci#readme",
   "dependencies": {
+    "aws4": "^1.11.0",
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
     "http": "^0.0.1-security",
