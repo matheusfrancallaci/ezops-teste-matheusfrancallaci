@@ -1,30 +1,20 @@
 
-var express = require('express');
-var bodyParser = require('body-parser')
-var app = express();
-const router = express.Router();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var mongoose = require('mongoose');
+const express = require('express');
+const bodyParser = require('body-parser')
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const mongoose = require('mongoose');
+//var cors = require('cors');
 const cors = require('cors');
-app.use(cors())
-app.get('/messages/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
-
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
-
-
-
-//const cors = require('cors');
-/*const corsOptions ={
-    origin:'http://localhost:3002', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));*/
+app.use((req, res, next) => {
+	//Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
+    res.header("Access-Control-Allow-Origin", "*");
+	//Quais são os métodos que a conexão pode realizar na API
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+    app.use(cors());
+    next();
+});
 const mongourl = "mongodb+srv://AKIAWB6PQW4OTPYP357J:Pn9iq3+GUlWKnLl8ZQSBNEMvzi6bU3VezjrAmvpq@chatbot.a3su7.mongodb.net/chatbot?authSource=%24external&authMechanism=MONGODB-AWS";
 
 const schema = mongoose.Schema({ // Construi a estrura do banco usando ordenando por "date=now"
