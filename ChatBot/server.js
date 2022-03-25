@@ -8,14 +8,14 @@ var mongoose = require('mongoose');
 //var cors = require('cors');
 const cors = require('cors');
 const corsOptions ={
-    origin:'http://52.2.175.77:3002', 
+    origin:'http://localhost:3002', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
 const mongourl = "mongodb+srv://AKIAWB6PQW4OTPYP357J:Pn9iq3+GUlWKnLl8ZQSBNEMvzi6bU3VezjrAmvpq@chatbot.a3su7.mongodb.net/chatbot?authSource=%24external&authMechanism=MONGODB-AWS";
 
-const schema = mongoose.Schema({ // Construi a estrura do banco usando
+const schema = mongoose.Schema({ // Construi a estrura do banco usando ordenando por "date=now"
     name : {
         type:String,
         default: '',
