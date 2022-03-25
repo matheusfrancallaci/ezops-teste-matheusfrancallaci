@@ -2,17 +2,29 @@
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
+const router = express.Router();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
-//var cors = require('cors');
-const cors = require('cors');
-const corsOptions ={
+var cors = require('cors');
+app.use(cors())
+router.get("/", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Max-Age", "1800");
+  res.setHeader("Access-Control-Allow-Headers", "content-type");
+  res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+   });
+
+
+
+//const cors = require('cors');
+/*const corsOptions ={
     origin:'http://localhost:3002', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));*/
 const mongourl = "mongodb+srv://AKIAWB6PQW4OTPYP357J:Pn9iq3+GUlWKnLl8ZQSBNEMvzi6bU3VezjrAmvpq@chatbot.a3su7.mongodb.net/chatbot?authSource=%24external&authMechanism=MONGODB-AWS";
 
 const schema = mongoose.Schema({ // Construi a estrura do banco usando ordenando por "date=now"
